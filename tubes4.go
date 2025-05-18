@@ -62,26 +62,29 @@ func bacaOpsiDua (A *tabMakanan, n *int) {
 	
 	fmt.Println ()
 	
+		fmt.Println ()
+		fmt.Printf ("Bahan ke %d : \n", *n+1)
+		
 		fmt.Print ("Nama Bahan Tambahan : ")
-		fmt.Scan (&A[*n].nama)
+		fmt.Scan (&A[*n+1].nama)
 			
 		fmt.Print ("Banyak Stok : ")
-		fmt.Scan (&A[*n].banyakStok)
+		fmt.Scan (&A[*n+1].banyakStok)
 			
 		fmt.Print ("Tanggal Kedaluwarsa di bulan Juni : ")
-		fmt.Scan (&A[*n].expiredDate_Tanggal)
+		fmt.Scan (&A[*n+1].expiredDate_Tanggal)
 		fmt.Println ()
 		
-		*n = *n + 1
+	*n = *n + 1
+	fmt.Println ()
+		
 }
-
 
 //Mengubah data makanan
 func bacaOpsiTiga (A *tabMakanan, n int) {
 	var i int
 	var namaBahan string
 	
-	fmt.Println ("Ketik nama bahan makanan yang mau di ubah : ")
 	fmt.Scan (&namaBahan)
 	
 	for i = 1; i < n; i++ {
@@ -177,23 +180,25 @@ func bacaOpsiTujuh (A *tabMakanan, n int) {
 	var namaBahan string
 	
 	fmt.Println ("Ketik nama bahan makanan yang mau di cek!")
-	fmt.Scan (&A[i].expiredDate_Tanggal)
+	fmt.Scan (&namaBahan)
 	
-	for i = 0; i < n; i++ {
+	for i = 1; i < n; i++ {
     	if A[i].nama == namaBahan {
-    		if (A[i].expiredDate_Tanggal) <= 3 {
-    			fmt.Println ("Mendekati Tanggal Kedaluwarsa!")
-    		
-    		} else if (A[i].expiredDate_Tanggal) > 3 && (A[i].expiredDate_Tanggal <= 10) {
-    			fmt.Println ("Kedaluwarsa masih lumayan lama")
-    		
-    		} else if (A[i].expiredDate_Tanggal) > 10 {
-    			fmt.Println ("Kedaluwarsa masih lama")
-    			
-    		}
-		}
-	}
+        	if (A[i].expiredDate_Tanggal) <= 3 {
+        		fmt.Printf ("Mendekati Tanggal Kedaluwarsa!")
+        		
+        	} else if (A[i].expiredDate_Tanggal) > 3 && (A[i].expiredDate_Tanggal <= 10) {
+        		fmt.Printf ("Kedaluwarsa masih lumayan lama")
+        		
+        	} else if (A[i].expiredDate_Tanggal) > 10 {
+        		fmt.Printf ("Kedaluwarsa masih lama")
+        		
+        	}
+		
+	    }
+    }
 }
+
 
 //Mencetak list bahan makanan serta atributnya yang sudah di input oleh user
 func cetakArray (A *tabMakanan, n int) {
@@ -217,23 +222,22 @@ func main () {
 	for {
 	menuUtama ()
 	fmt.Scan (&pilihOpsi)
-	fmt.Println ()
-	fmt.Print ("Berapa banyak bahan makanan yang mau kamu masukkan? : ")
-	
+	fmt.Println ()	
 		if pilihOpsi != 99	{
 			switch pilihOpsi {
 			case 1 :
+				fmt.Print ("Berapa banyak bahan makanan yang mau kamu masukkan? : ")
 				fmt.Scan (&nData)
 				bacaOpsiSatu (&dataMakanan, nData)
 				cetakArray (&dataMakanan, nData)
 					
 			case 2 :
-				fmt.Scan (&nData)
 				bacaOpsiDua (&dataMakanan, &nData)
 				cetakArray (&dataMakanan, nData)
 			
 			case 3 :
-				fmt.Scan (&nData)
+				fmt.Println ("Ketik nama bahan makanan yang mau di ubah : ")
+				fmt.Scan (&dataMakanan)
 				bacaOpsiTiga (&dataMakanan, nData)
 				cetakArray (&dataMakanan, nData)
 				
@@ -255,7 +259,6 @@ func main () {
 			case 7 :
 				fmt.Scan (&nData)
 				bacaOpsiTujuh (&dataMakanan, nData)
-				cetakArray (&dataMakanan, nData)
 				
 			default :
 				fmt.Println ("Opsi tidak valid, coba lagi")
