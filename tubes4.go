@@ -51,8 +51,8 @@ func bacaOpsiSatu (A *tabMakanan, n int) {
 			
 			fmt.Print ("Tanggal Kedaluwarsa di bulan Juni : ")
 			fmt.Scan (&A[i].expiredDate_Tanggal)
-			fmt.Println ()
 			
+			fmt.Println ()
 		}
 }
 
@@ -70,9 +70,12 @@ func bacaOpsiDua (A *tabMakanan, n *int) {
 			
 		fmt.Print ("Banyak Stok : ")
 		fmt.Scan (&A[*n+1].banyakStok)
-			
+		
 		fmt.Print ("Tanggal Kedaluwarsa di bulan Juni : ")
 		fmt.Scan (&A[*n+1].expiredDate_Tanggal)
+		
+			
+		
 		fmt.Println ()
 		
 	*n = *n + 1
@@ -117,7 +120,7 @@ func bacaOpsiEmpat (A *tabMakanan, n int) {
 				
 			fmt.Print ("Banyak Stok : ")
 			fmt.Scan (&A[i].banyakStok)
-				
+			
 			fmt.Print ("Tanggal Kedaluwarsa di bulan Juni : ")
 			fmt.Scan (&A[i].expiredDate_Tanggal)
 			fmt.Println ()
@@ -127,17 +130,19 @@ func bacaOpsiEmpat (A *tabMakanan, n int) {
 
 
 //Mencari nama bahan makanan, misal kamu mau cari bahan telor, nanti telor bakal ke cetak beserta total stok berapa & tanggal Kedaluwarsa kapan
-func bacaOpsiLima (A *tabMakanan, n int) {
+func bacaOpsiLima(A *tabMakanan, n int) {
 	var i int
 	var namaCari string
-	
+	fmt.Scan(n) 
 	fmt.Print("Masukkan nama bahan yang ingin dicari: ")
-	fmt.Scan(&n) 
 	fmt.Scan(&namaCari)
 
 	for i = 1; i <= n; i++ {
 		if A[i].nama == namaCari {
+			fmt.Println("-----------------------------------------")
 			fmt.Printf("Nama: %s, Stok: %d, Expired Date: %d\n", A[i].nama, A[i].banyakStok, A[i].expiredDate_Tanggal)
+			fmt.Println("-----------------------------------------")
+			fmt.Println ()
 			return
 		}
 	}
@@ -146,15 +151,16 @@ func bacaOpsiLima (A *tabMakanan, n int) {
 
 
 
+
 //Menggunakan bahan makanan sebanyak "x" dengan cara mengetik nama bahan makanan. Misal mau pake telor sebanyak x, nanti datanya bakal ke cetak dan telor nya berkurang.
-func bacaOpsiEnam (A *tabMakanan, n int) {
+func bacaOpsiEnam(A *tabMakanan, n int) {
 	var i, jumlah int
-	var namaBahan string 
+	var namaBahan string
 	
-	fmt.Println ("Masukkan Bahan yang ingin digunakan :")
-	fmt.Scan (&n)
-	fmt.Scan(&namaBahan) 
-	
+	fmt.Scan(n) 
+	fmt.Print("Masukkan nama bahan yang ingin digunakan: ")
+	fmt.Scan(&namaBahan)
+
 	for i = 1; i <= n; i++ {
 		if A[i].nama == namaBahan {
 			fmt.Printf("Stok tersedia: %d\n", A[i].banyakStok)
@@ -172,6 +178,7 @@ func bacaOpsiEnam (A *tabMakanan, n int) {
 	}
 	fmt.Println("Bahan tidak ditemukan.")
 }
+
 
 
 //Mengecek apakah bahan makanan sudah mau kedaluwarsa atau belum
@@ -223,8 +230,9 @@ func main () {
 	menuUtama ()
 	fmt.Scan (&pilihOpsi)
 	fmt.Println ()	
-		if pilihOpsi != 99	{
-			switch pilihOpsi {
+	
+		switch pilihOpsi {
+			
 			case 1 :
 				fmt.Print ("Berapa banyak bahan makanan yang mau kamu masukkan? : ")
 				fmt.Scan (&nData)
@@ -247,24 +255,23 @@ func main () {
 				cetakArray (&dataMakanan, nData)
 				
 			case 5 :
-				fmt.Scan (&nData)
 				bacaOpsiLima (&dataMakanan, nData)
 				cetakArray (&dataMakanan, nData)
 					
 			case 6 :
-				fmt.Scan (&nData)
 				bacaOpsiEnam (&dataMakanan, nData)
 				cetakArray (&dataMakanan, nData)
 					
 			case 7 :
 				fmt.Scan (&nData)
 				bacaOpsiTujuh (&dataMakanan, nData)
+			
+			case 99 :
+				fmt.Println ("Terimakasih telah menggunakan program :D")
+				return
 				
 			default :
 				fmt.Println ("Opsi tidak valid, coba lagi")
-				return
-			}	
-		}
+		}	
 	}
-		fmt.Println ("Terimakasih telah menggunakan program :D")
 }
